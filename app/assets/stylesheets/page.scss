@@ -1,0 +1,28 @@
+// Place all the styles related to the page controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#messages {height: 300px; overflow: scroll; border: 1px solid #ddd}
+
+
+// slug backgrownd
+.index-page {
+  background-image: url("http://mi.fancaps.net/Galleries/Monsters_University/Monsters_University_Screenshot_0374.jpg");
+  background-repeat: no-repeat!important;
+  background-position: center 80%;
+  width: 100%;
+  height: 105vh;
+}
+
+.index-page h1, h2 {
+   color: white;
+   font-weight: bolder;
+   margin-top: 0;
+   padding-top: 6%;
+   padding-bottom: 2%;
+}
+
+.index-welcome {
+  margin-top: 75px;
+  color: white;
+  font-weight: bolder;
+}

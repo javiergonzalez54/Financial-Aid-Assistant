@@ -1,0 +1,44 @@
+<div class="form-container" id="fafsa-form">
+  <%= form_with(model: UserResponse.new, remote: true) do |form| %>
+  <% if user_response.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(user_response.errors.count, "error") %> prohibited this user_response from being saved:</h2>
+
+    <ul>
+      <% user_response.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <center>
+    <div class="field">
+      <h2><%= @current_section %></h2>
+      <h3><%= label_tag question.text %><br></h3>
+      <% response_type = question.response_type  %>
+      <% if response_type == "String" %>
+      <%= form.text_field :response, id: :user_response_response %>
+      <% elsif response_type == "Integer" %>
+      <%= form.number_field :response, id: :user_response_response %>
+      <% elsif response_type == "Multiple choice" %>
+      <% answers = "Question::#{question.name.upcase}_ANSWERS".constantize if "Question::#{@question.name.upcase}_ANSWERS".constantize %>
+      <% answers.each do |answer| %>
+        <div>
+        <%= form.label answer, for: "#{answer}_id" %>
+        <%= form.radio_button :response, answer, id: "#{answer}_id" %>
+        </div>
+      <% end %>
+      <% end %>
+    </div>
+
+    <%= hidden_field_tag :user_id, current_user.id, id: :user_response_user_id %>
+    <%= form.hidden_field :question_id, value: @question.id, id: :user_response_question_id %>
+
+
+    <div class="actions">
+      <%= form.submit 'Next', class: "submit" %>
+    </div>
+  </center>
+  <% end %>
+</div>
